@@ -1,0 +1,46 @@
+#include <iostream>
+#include <deque>
+using namespace std;
+
+int main() {
+
+//deque
+deque<int> d;
+//using push back and push front
+d.push_front(1);
+d.push_front(2);
+d.push_back(3);
+for(int i:d){
+    cout<<i<<" ";
+}
+cout<<endl<<"Element at 0-->"<<d.at(0)<<endl;
+cout<<endl;
+
+//using pop front in c++
+d.pop_front();
+for(int i:d){
+    cout<<i<<" ";
+}
+cout<<endl<<"Element at 0-->"<<d.at(0);
+cout<<endl;
+cout<<endl<<"Empty or not??"<<endl;
+if(d.empty()==0){
+    //Because 0 is false meaning its not empty
+    cout<<"Its Not Empty";
+}
+else{
+    cout<<"its empty";
+}
+//erases the deque
+d.erase(d.begin(),d.end());
+cout<<endl;
+cout<<endl<<"After Using d.erase"<<endl;
+if(d.empty()==0){
+    //Because 0 is false meaning its not empty
+    cout<<"Its Not Empty";
+}
+else{
+    cout<<"its empty";
+}
+    return 0;
+}
