@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+// Problem: Find the Largest Element in an Array
+// Link: N/A (User Input-based problem)
 // Function to find the largest element in the array
 int largestElement(vector<int>& nums) {
     int largest = nums[0];  // Initialize with the first element
@@ -25,4 +26,12 @@ int main() {
 
     return 0;
 }
+/*
+⏳ Time Complexity: 
+- O(N), where N = size of array
+- We perform one pass through the array, comparing each element once.
 
+🛢️ Space Complexity:
+- O(1)
+- We only use a constant amount of extra space for the variable `largest`.
+*/
