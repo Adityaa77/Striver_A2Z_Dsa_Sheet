@@ -1,0 +1,45 @@
+// Platform: Custom (Can be used on LeetCode, GFG, etc.)
+// Problem: Union of Two Arrays
+// Time Complexity: O((n + m) * log(n + m))
+// Space Complexity: O(n + m)
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to return union of two arrays
+vector<int> unionnn(vector<int>& nums1, vector<int>& nums2) {
+    set<int> s;
+
+    // Insert elements of both arrays into the set
+    for (int i = 0; i < nums1.size(); i++) {
+        s.insert(nums1[i]);
+    }
+    for (int i = 0; i < nums2.size(); i++) {
+        s.insert(nums2[i]);
+    }
+
+    // Copy set elements to vector
+    vector<int> unionn;
+    for (auto it : s) {
+        unionn.push_back(it);
+    }
+
+    return unionn;
+}
+
+int main() {
+    // Optional: setupIO(); // only needed if using input.txt/output.txt
+
+    vector<int> nums1 = {1, 2, 3, 4, 5};
+    vector<int> nums2 = {1, 2, 4, 5, 6};
+
+    // Get union of the arrays
+    vector<int> ans = unionnn(nums1, nums2);
+
+    // Print result
+    for (int x : ans) {
+        cout << x << " ";
+    }
+
+    return 0;
+}
