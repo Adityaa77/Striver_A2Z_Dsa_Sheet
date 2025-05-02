@@ -1,0 +1,92 @@
+// Problem: 169. Majority Element
+// Link: https://leetcode.com/problems/majority-element/
+// Difficulty: Easy on LeetCode, but key conceptually for interviews
+
+// Problem Statement:
+// Given an array nums of size n, return the majority element.
+// The majority element is the element that appears more than ⌊n / 2⌋ times.
+// You may assume that the majority element always exists in the array.
+
+#include <vector>
+using namespace std;
+class Solution {
+public:
+
+    // ----------------------------------------------------------------
+    // 1. Brute Force Approach (Nested Loop)
+    // Time Complexity: O(N^2)
+    // Space Complexity: O(1)
+    // Not efficient for large inputs but simple to understand
+    int majorityElementBruteForce(vector<int>& nums) {
+        int n = nums.size();
+        for (int i = 0; i < n; i++) {
+            int cnt = 0;
+            for (int j = 0; j < n; j++) {
+                if (nums[i] == nums[j]) {
+                    cnt++;
+                }
+                if (cnt > n / 2) {
+                    return nums[i];
+                }
+            }
+        }
+        return -1; // The problem guarantees majority element exists
+    }
+--------------------------------------------------------------------------------------------------------------------------
+    // 2. Optimal Solution using Moore's Voting Algorithm
+    // Time Complexity: O(N)
+    // Space Complexity: O(1)
+    // Very efficient and widely used in interviews
+
+    int majorityElementMooreVoting(vector<int>& nums) {
+        int cnt = 0;
+        int candidate = 0;
+
+        // Phase 1: Find potential majority element
+        for (int i = 0; i < nums.size(); i++) {
+            if (cnt == 0) {
+                candidate = nums[i];
+                cnt = 1;
+            } else if (candidate == nums[i]) {
+                cnt++;
+            } else {
+                cnt--;
+            }
+        }
+
+        // Phase 2: (Optional for this problem) Confirm the candidate
+        int count = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == candidate) {
+                count++;
+            }
+        }
+
+        // In this problem, a majority element is guaranteed
+        return candidate;
+    }
+};
+
+
+//Random information
+/*
+Moore’s Voting Algorithm:
+
+Use Case:
+- Efficiently finds the majority element in an array (i.e., the element that appears more than n/2 times).
+- Works only when such a majority element is guaranteed to exist.
+
+How it Works:
+- Phase 1 (Candidate Selection): Traverse the array and keep track of a potential candidate and a counter.
+  - If the counter is 0, pick the current element as a new candidate.
+  - If the current element equals the candidate, increment the counter.
+  - Else, decrement the counter.
+- Phase 2 (Validation - optional): Re-count the candidate’s frequency to ensure it appears > n/2 times (needed when the problem doesn't guarantee existence).
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+Use When:
+- A majority element is expected or guaranteed.
+- Optimizing for space and time is crucial.
+*/
