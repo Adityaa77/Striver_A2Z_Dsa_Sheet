@@ -27,22 +27,22 @@ public:
 // 🔍 Time Complexity: O(log n)
 // 🔧 Space Complexity: O(1)
 // 📌 Use binary search since array is sorted
-class OptimalSolution {
+class Solution {
 public:
     int search(vector<int>& nums, int target) {
         int n = nums.size();
-        int left = 0, right = n - 1;
+        int left = 0;
+        int right = n - 1;
 
         while (left <= right) {
-            // ⚠️ Safer mid to avoid overflow: left + (right - left) / 2
-            int mid = left + (right - left) / 2;
+            int mid = (left + right) / 2;
 
-            if (nums[mid] == target) return mid;         // Target found
-            else if (nums[mid] > target) right = mid - 1; // Target in left half
-            else left = mid + 1;                         // Target in right half
+            if (nums[mid] == target) return mid;
+            else if (nums[mid] > target) right = mid - 1;
+            else left = mid + 1;
         }
 
-        return -1; // Target not found
+        return -1; // Element not found
     }
 };
 
